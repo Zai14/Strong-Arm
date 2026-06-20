@@ -21,39 +21,15 @@ import {
   Sun,
   MapPin,
   Phone,
-  Mail,
-  Instagram,
-  Facebook,
   Smartphone,
-  Star,
   ChevronDown,
   Clock,
   Zap,
-  BookOpen,
   ShieldAlert,
   Lightbulb,
-  Calendar,
-  FileText,
   Send,
   Target,
 } from "lucide-react";
-
-function XIcon({ className }: { className?: string }) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className={className}
-    >
-      <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-      <path d="M4 20l6.768 -6.768m2.46 -2.46L20 4" />
-    </svg>
-  );
-}
 
 function useTheme() {
   const [isDark, setIsDark] = useState(true);
@@ -543,7 +519,6 @@ export default function BeginnerGuide() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [expandedStep, setExpandedStep] = useState(0);
   const [expandedFAQ, setExpandedFAQ] = useState<number | null>(null);
-  const [showOrientationForm, setShowOrientationForm] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -566,7 +541,7 @@ export default function BeginnerGuide() {
   const calculateBMI = () => {
     const h = parseFloat(calcHeight) / 100;
     const w = parseFloat(calcWeight);
-    return (w / (h * h)).toFixed(1);
+    return w / (h * h);
   };
 
   // Calculate Daily Calories
@@ -593,16 +568,29 @@ export default function BeginnerGuide() {
     return (bmr * (activityMultiplier[calcActivity as keyof typeof activityMultiplier] || 1.55)).toFixed(0);
   };
 
-  // Calculate Daily Protein
-  const calculateProtein = () => {
-    return (parseFloat(macroWeight) * 1.6).toFixed(0);
-  };
-
   // Calculate Macros
   const calculateMacros = () => {
-    const calories = parseFloat(calculateCalories());
-    const protein = parseFloat(calculateProtein());
-    const proteinCalories = protein * 4;
+    // Calculate TDEE using the macro section's own weight value
+    const h = parseFloat(calcHeight);
+    const w = parseFloat(macroWeight);
+    const a = parseFloat(calcAge);
+    
+    let bmr = 0;
+    if (calcGender === "male") {
+      bmr = 88.362 + 13.397 * w + 4.799 * h - 5.677 * a;
+    } else {
+      bmr = 447.593 + 9.247 * w + 3.098 * h - 4.33 * a;
+    }
+    
+    const activityMultiplier: Record<string, number> = {
+      sedentary: 1.2,
+      light: 1.375,
+      moderate: 1.55,
+      heavy: 1.725,
+    };
+    
+    const calories = bmr * (activityMultiplier[calcActivity] || 1.55);
+    const protein = parseFloat(macroWeight) * 1.6;
     let carbCalories, fatCalories;
     
     if (macroGoal === "muscle") {
@@ -617,9 +605,9 @@ export default function BeginnerGuide() {
     }
     
     return {
-      protein: protein,
-      carbs: (carbCalories / 4).toFixed(0),
-      fats: (fatCalories / 9).toFixed(0),
+      protein: Math.round(protein),
+      carbs: Math.round(carbCalories / 4),
+      fats: Math.round(fatCalories / 9),
     };
   };
 
@@ -1222,7 +1210,7 @@ export default function BeginnerGuide() {
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className={`rounded-xl p-4 ${isDark ? "bg-red-500/20" : "bg-red-100/50"}`}>
                   <p className={`text-xs font-semibold ${textMuted} mb-1`}>BMI</p>
-                  <p className="text-3xl font-black text-red-500">{bmi}</p>
+                  <p className="text-3xl font-black text-red-500">{bmi.toFixed(1)}</p>
                   <p className={`text-xs mt-1 ${textMuted}`}>
                     {bmi < 18.5 ? "Underweight" : bmi < 25 ? "Healthy" : bmi < 30 ? "Overweight" : "Obese"}
                   </p>
@@ -1292,7 +1280,7 @@ export default function BeginnerGuide() {
                   <div className={`w-full h-2 rounded-full ${isDark ? "bg-white/[0.1]" : "bg-gray-200"}`}>
                     <div className="w-1/3 h-full bg-green-500 rounded-full"></div>
                   </div>
-                  <p className={`text-xs ${textMuted}`}>~{(parseFloat(macros.protein) * 4).toFixed(0)} kcal</p>
+                  <p className={`text-xs ${textMuted}`}>~{(macros.protein * 4).toFixed(0)} kcal</p>
                 </div>
 
                 <div className="space-y-1">
@@ -1303,7 +1291,7 @@ export default function BeginnerGuide() {
                   <div className={`w-full h-2 rounded-full ${isDark ? "bg-white/[0.1]" : "bg-gray-200"}`}>
                     <div className="w-2/5 h-full bg-amber-500 rounded-full"></div>
                   </div>
-                  <p className={`text-xs ${textMuted}`}>~{(parseFloat(macros.carbs) * 4).toFixed(0)} kcal</p>
+                  <p className={`text-xs ${textMuted}`}>~{(macros.carbs * 4).toFixed(0)} kcal</p>
                 </div>
 
                 <div className="space-y-1">
@@ -1314,7 +1302,7 @@ export default function BeginnerGuide() {
                   <div className={`w-full h-2 rounded-full ${isDark ? "bg-white/[0.1]" : "bg-gray-200"}`}>
                     <div className="w-1/4 h-full bg-blue-500 rounded-full"></div>
                   </div>
-                  <p className={`text-xs ${textMuted}`}>~{(parseFloat(macros.fats) * 9).toFixed(0)} kcal</p>
+                  <p className={`text-xs ${textMuted}`}>~{(macros.fats * 9).toFixed(0)} kcal</p>
                 </div>
               </div>
 
