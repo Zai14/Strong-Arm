@@ -1,0 +1,80 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+/dist
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# env files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# vercel
+.vercel
+
+# turbopack cache
+.turbo
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# coverage
+/coverage
+
+# testing
+/playwright-report
+/test-results
+
+# uploads/temp files
+uploads/
+tmp/
+temp/
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# package manager
+.npm
+.yarn/*
+!.yarn/cache
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+
+# local database files
+*.sqlite
+*.sqlite3
+
+# certificates and keys
+*.pem
+*.key
+*.crt
+
+# AWS credentials
+.aws/
+
+# log
+logs/
+*.log
