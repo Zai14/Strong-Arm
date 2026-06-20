@@ -75,6 +75,6 @@ Thumbs.db
 # AWS credentials
 .aws/
 
-# log
+# logs
 logs/
 *.log
