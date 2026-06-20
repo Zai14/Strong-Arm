@@ -14,7 +14,6 @@ import {
   Menu,
   Dumbbell,
   Heart,
-  Award,
   Users,
   AlertCircle,
   TrendingUp,
