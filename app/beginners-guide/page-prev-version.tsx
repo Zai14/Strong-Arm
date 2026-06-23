@@ -537,39 +537,6 @@ export default function BeginnerGuide() {
   const [macroWeight, setMacroWeight] = useState("70");
   const [macroGoal, setMacroGoal] = useState("muscle");
 
-  // Handle Orientation Booking via WhatsApp
-  const handleBookOrientation = () => {
-    if (!formData.name.trim()) {
-      alert("Please enter your name");
-      return;
-    }
-    if (!formData.email.trim()) {
-      alert("Please enter your email");
-      return;
-    }
-    if (!formData.phone.trim()) {
-      alert("Please enter your phone number");
-      return;
-    }
-    if (!formData.date) {
-      alert("Please select a preferred date");
-      return;
-    }
-
-    const experienceLevels: { [key: string]: string } = {
-      beginner: "Complete Beginner",
-      "some-exp": "Some Experience",
-      experienced: "Experienced",
-    };
-
-    const message = `🏋️ *ORIENTATION BOOKING REQUEST* 🏋️\n\n📋 *MEMBER DETAILS*\n━━━━━━━━━━━━━━━━━━━\nName: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\n📅 *PREFERRED DATE*\n━━━━━━━━━━━━━━━━━━━\n${formData.date}\n\n💪 *FITNESS BACKGROUND*\n━━━━━━━━━━━━━━━━━━━\nExperience: ${experienceLevels[formData.experience]}\nGoals: ${formData.goals || "Not specified"}\n\n⏰ *GYM HOURS*\n━━━━━━━━━━━━━━━━━━━\nMonday - Saturday: 6:00 AM - 8:00 PM\nSunday: Closed\nOpens from Fajr Prayer onwards\n\n✨ *FREE ORIENTATION INCLUDES*\n━━━━━━━━━━━━━━━━━━━\n✓ Gym facility tour (30-45 mins)\n✓ Equipment introduction\n✓ Fitness assessment\n✓ Personalized plan overview\n\n📍 Location: Upstairs Best Bakery, Bemina, Srinagar\n\nPlease confirm my orientation appointment. Thank you!`;
-
-    const phoneNumber = "917006324503";
-    const encodedMessage = encodeURIComponent(message);
-    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
-    window.open(whatsappUrl, "_blank");
-  };
-
   // Calculate BMI
   const calculateBMI = () => {
     const h = parseFloat(calcHeight) / 100;
@@ -1786,13 +1753,12 @@ export default function BeginnerGuide() {
                 </div>
 
                 <motion.button
-                  onClick={handleBookOrientation}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 px-4 rounded-lg bg-green-600 text-white font-bold uppercase tracking-widest hover:bg-green-500 transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-600/30"
+                  className="w-full py-3 px-4 rounded-lg bg-red-600 text-white font-bold uppercase tracking-widest hover:bg-red-500 transition-all flex items-center justify-center gap-2"
                 >
                   <Send className="w-5 h-5" />
-                  📱 Send via WhatsApp
+                  Book Orientation
                 </motion.button>
               </div>
             </div>

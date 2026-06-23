@@ -309,6 +309,7 @@ interface Plan {
   features: string[];
   accentColor?: string;
   gradient?: string;
+  whatsappMessage?: string;
 }
 
 /* ─────────────────────────────────────────────────────────────
@@ -319,15 +320,33 @@ const PLANS: Plan[] = [
     id: "strongarm-monthly",
     name: "Monthly Pass",
     duration: "1 Month",
-    gst: "Incl. GST · Cancel anytime",
+    gst: "Cancel anytime",
     desc: "Perfect for trying us out",
     hasTrial: true,
     accentColor: "#ef4444",
     gradient: "from-red-500 to-red-600",
-    monthlyPrice: "₹1,999",
+    monthlyPrice: "₹1,000",
+    whatsappMessage: "Hi! I'm interested in the Monthly Pass (₹1,000) at Strong Arm Fitness Centre.",
     features: [
       "Full gym access",
-      "Locker room & facilities",
+      "Open 6 AM - 11 PM",
+      "Basic fitness orientation",
+    ],
+  },
+  {
+    id: "strongarm-monthly-cardio",
+    name: "Monthly Pass + Cardio",
+    duration: "1 Month",
+    gst: "With Cardio Zone",
+    desc: "Full access + cardio equipment",
+    hasTrial: true,
+    accentColor: "#dc2626",
+    gradient: "from-red-600 to-red-700",
+    monthlyPrice: "₹1,500",
+    whatsappMessage: "Hi! I'm interested in the Monthly Pass + Cardio (₹1,500) at Strong Arm Fitness Centre.",
+    features: [
+      "Full gym access",
+      "Premium cardio equipment",
       "Open 6 AM - 11 PM",
       "Basic fitness orientation",
     ],
@@ -336,16 +355,35 @@ const PLANS: Plan[] = [
     id: "strongarm-quarter",
     name: "Quarterly Pack",
     duration: "3 Months",
-    gst: "Incl. GST · Best Value",
+    gst: "Best Value",
     desc: "Kickstart your fitness",
     hasTrial: false,
     accentColor: "#f97316",
     gradient: "from-orange-500 to-orange-600",
-    monthlyPrice: "₹5,499",
+    monthlyPrice: "₹2,400",
+    whatsappMessage: "Hi! I'm interested in the Quarterly Pack (₹2,400) at Strong Arm Fitness Centre.",
     features: [
-      "All Monthly features",
+      "Full gym access",
       "2 complimentary consultations",
-      "Priority class booking",
+      "Digital fitness tracking app",
+      "15% discount on supplements",
+    ],
+  },
+  {
+    id: "strongarm-quarter-cardio",
+    name: "Quarterly Pack + Cardio",
+    duration: "3 Months",
+    gst: "With Cardio Zone",
+    desc: "All features + premium cardio",
+    hasTrial: false,
+    accentColor: "#ea580c",
+    gradient: "from-orange-600 to-orange-700",
+    monthlyPrice: "₹3,900",
+    whatsappMessage: "Hi! I'm interested in the Quarterly Pack + Cardio (₹3,900) at Strong Arm Fitness Centre.",
+    features: [
+      "Full gym access",
+      "Premium cardio equipment",
+      "2 complimentary consultations",
       "Digital fitness tracking app",
       "15% discount on supplements",
     ],
@@ -354,63 +392,83 @@ const PLANS: Plan[] = [
     id: "strongarm-semi-annual",
     name: "Semi-Annual",
     duration: "6 Months",
-    gst: "Incl. GST · Greater Savings",
+    gst: "Greater Savings",
     desc: "Build momentum steadily",
     featured: true,
     hasTrial: true,
     accentColor: "#22c55e",
     gradient: "from-green-500 to-green-600",
-    monthlyPrice: "₹9,999",
+    monthlyPrice: "₹4,800",
+    whatsappMessage: "Hi! I'm interested in the Semi-Annual Plan (₹4,800) at Strong Arm Fitness Centre.",
     features: [
-      "All Quarterly features",
+      "Full gym access",
       "4 personalized training sessions",
       "Nutrition consultation with expert",
       "Monthly fitness challenges",
       "Access to exclusive workshops",
-      "25% discount on premium classes",
+      "Priority class booking",
+    ],
+  },
+  {
+    id: "strongarm-semi-annual-cardio",
+    name: "Semi-Annual + Cardio",
+    duration: "6 Months",
+    gst: "Best Value Offer",
+    desc: "Premium access + cardio zone",
+    featured: false,
+    hasTrial: false,
+    accentColor: "#16a34a",
+    gradient: "from-green-600 to-green-700",
+    monthlyPrice: "₹7,300",
+    whatsappMessage: "Hi! I'm interested in the Semi-Annual Plan + Cardio (₹7,300) at Strong Arm Fitness Centre.",
+    features: [
+      "Full gym access",
+      "Premium cardio equipment",
+      "4 personalized training sessions",
+      "Nutrition consultation with expert",
+      "Monthly fitness challenges",
+      "Access to exclusive workshops",
+      "Priority class booking",
     ],
   },
   {
     id: "strongarm-annual",
     name: "Annual Membership",
     duration: "12 Months",
-    gst: "Incl. GST · Save ₹4,000+",
+    gst: "Premium Value",
     desc: "Commit to your transformation",
     hasTrial: false,
     accentColor: "#3b82f6",
     gradient: "from-blue-500 to-blue-600",
-    monthlyPrice: "₹17,999",
+    monthlyPrice: "₹9,000",
+    whatsappMessage: "Hi! I'm interested in the Annual Membership (₹9,000) at Strong Arm Fitness Centre.",
     features: [
-      "All Semi-Annual features",
+      "Full gym access",
       "12 premium training sessions",
       "Unlimited group classes",
       "Body composition analysis (quarterly)",
       "Priority access to new facilities",
-      "Free merchandise (T-shirt & towel)",
-      "Guest passes (2 per month)",
-      "Priority event access",
     ],
   },
   {
-    id: "strongarm-elite",
-    name: "Elite Premium",
+    id: "strongarm-annual-cardio",
+    name: "Annual Membership + Cardio",
     duration: "12 Months",
-    gst: "Incl. GST · Unlimited Benefits",
-    desc: "VIP fitness experience",
+    gst: "Ultimate Package",
+    desc: "Complete fitness transformation",
     hasTrial: false,
-    accentColor: "#8b5cf6",
-    gradient: "from-purple-500 to-purple-600",
-    monthlyPrice: "₹29,999",
+    accentColor: "#1d4ed8",
+    gradient: "from-blue-600 to-blue-700",
+    monthlyPrice: "₹14,000",
+    whatsappMessage: "Hi! I'm interested in the Annual Membership + Cardio (₹14,000) at Strong Arm Fitness Centre.",
     features: [
-      "All Annual features",
-      "24/7 gym access",
-      "Personal trainer (4 sessions/month)",
-      "One-on-one nutrition coaching",
-      "Priority equipment reservation",
-      "Steam & sauna unlimited",
-      "Spa & massage services (monthly)",
-      "VIP lounge access",
-      "Family add-ons available",
+      "Full gym access",
+      "Premium cardio equipment",
+      "12 premium training sessions",
+      "Unlimited group classes",
+      "Body composition analysis (quarterly)",
+      "Priority access to new facilities",
+      "Priority event access",
     ],
   },
 ];
@@ -815,7 +873,7 @@ export default function StrongArmGym() {
               {typedHeroDescription || heroDescription}
             </motion.p>
             <motion.p
-              className="text-sm sm:text-base md:text-lg text-amber-300/95 mb-10 leading-relaxed max-w-[700px] mx-auto font-semibold"
+              className="text-base sm:text-lg md:text-xl bg-gradient-to-r from-red-400 via-red-300 to-amber-300 bg-clip-text text-transparent mb-10 leading-relaxed max-w-[700px] mx-auto font-black tracking-wide"
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{
@@ -825,7 +883,7 @@ export default function StrongArmGym() {
                 delay: 1.2,
               }}
             >
-              ⏰ Starting Time from Fajr Namaz (Morning Prayers)
+              ✨ Rise Early, Rise Strong – Open from Fajr Prayer ✨
             </motion.p>
 
             <motion.button
@@ -1236,15 +1294,15 @@ export default function StrongArmGym() {
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`w-full py-3 rounded-xl font-bold uppercase tracking-wider transition-all mb-8 ${
-                      plan.featured
-                        ? "bg-red-600 text-white hover:bg-red-500 shadow-lg shadow-red-600/30"
-                        : isDark
-                          ? "bg-white/[0.08] text-white hover:bg-white/[0.14]"
-                          : "bg-gray-100 text-gray-900 hover:bg-gray-200"
-                    }`}
+                    onClick={() => {
+                      const phoneNumber = "917006324503";
+                      const encodedMessage = encodeURIComponent(plan.whatsappMessage || `Hi! I'm interested in the ${plan.name} (${plan.monthlyPrice}) at Strong Arm Fitness Centre.`);
+                      const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                      window.open(whatsappUrl, "_blank");
+                    }}
+                    className={`w-full py-3 rounded-xl font-bold uppercase tracking-wider transition-all mb-8 bg-green-600 text-white hover:bg-green-500 shadow-lg shadow-green-600/30`}
                   >
-                    {plan.hasTrial ? "Start Free Trial" : "Join Now"}
+                    Contact
                   </motion.button>
 
                   <ul className="space-y-3">
